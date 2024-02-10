@@ -1,0 +1,41 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Fallback color with opacity */
+    overflow: auto;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px; /* Lebar maksimal modal */
+    margin: 0 auto; /* Untuk mengatur modal di tengah horizontal */
+    position: sticky;
+    top: 50%; /* Menyimpan modal di tengah layar vertikal */
+    transform: translateY(-50%); /* Menyimpan modal di tengah layar vertikal */
+    padding: 20px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
