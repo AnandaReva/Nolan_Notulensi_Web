@@ -1,0 +1,191 @@
+:root {
+    --ungu: rgb(93, 58, 148);
+}
+body {
+    height: 100vh;
+}
+a {
+    text-decoration: none !important;
+    color: black;
+}
+.cover {
+    display: grid;
+    grid-template-columns: auto 1300px auto;
+    grid-template-rows: 6rem auto 2.5rem;
+    grid-template-areas: ". nav ." ". main ." "footer footer footer";
+}
+nav {
+    grid-area: nav;
+}
+main {
+    grid-area: main;
+}
+footer {
+    grid-area: footer;
+}
+.pointer {
+    cursor: pointer;
+}
+.ungu {
+    background-color: var(--ungu);
+}
+.text-primary {
+    color: var(--ungu) !important;
+}
+.pagination .active * {
+    background-color: var(--ungu) !important;
+    border: none !important;
+    color: aliceblue !important;
+}
+.shadow {
+    box-shadow: 10px 10px 8px 0 rgba(0, 0, 0, 0.3),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+/* login */
+.cover-login {
+    height: calc(100vh - 5rem);
+}
+.login-title {
+    border-left: 2px solid;
+    padding-left: 10px;
+}
+.box-login {
+    width: 28rem;
+    top: 50%;
+    transform: translateY(0, -50%);
+}
+.box-login input:focus {
+    outline: none !important;
+}
+.box-login + p {
+    background-color: gainsboro;
+}
+.login .btn {
+    width: 100px;
+}
+.login .btn:hover {
+    background-color: rgba(92, 58, 148, 0.897);
+}
+/* end of login */
+
+/* home */
+table thead tr:first-child * {
+    background-color: var(--ungu);
+    color: aliceblue;
+}
+.btn-outline-primary,
+.btn-outline-primary i {
+    border-color: var(--ungu) !important;
+    color: var(--ungu);
+}
+.btn-outline-primary:hover {
+    border-color: var(--ungu);
+    background-color: var(--ungu);
+}
+.btn-outline-primary:hover a {
+    color: aliceblue !important;
+}
+.btn-outline-primary:hover i {
+    border-color: aliceblue !important;
+    color: aliceblue !important;
+}
+.btn-ungu {
+    background-color: var(--ungu);
+    border-color: var(--ungu);
+    color: white;
+}
+/* end of home */
+
+/* MoM */
+table ul {
+    height: 96px;
+    overflow-y: scroll;
+}
+.lampiran {
+    margin-left: 14rem;
+    margin-top: 3rem;
+}
+.lampiran > a {
+    margin-left: 2rem;
+}
+.signature .col {
+    height: 200px !important;
+}
+/* end of MoM */
+
+/* Create Note */
+.tabel table input {
+    width: 90%;
+    outline: none;
+    padding: 4px !important;
+}
+.tabel-create .input-meeting th,
+.tabel-create .input-meeting td,
+.tabel-create .input-meeting {
+    border: none;
+}
+.box-input-title {
+    width: 92%;
+}
+.lampiran i div {
+    font-family: sans-serif;
+}
+.lampiran button {
+    height: 2rem;
+}
+input[type="checkbox"] {
+    width: 1rem !important;
+    margin-right: 10px;
+}
+.lampiran #btn-up {
+    width: 300px;
+}
+#discussion-container select {
+    margin: 8px 0;
+}
+#file-wrapper ul li #delete-file {
+    cursor: pointer;
+}
+.btn-create input:hover {
+    color: aliceblue;
+}
+#listfile .btn-del {
+    background-color: aqua !important;
+}
+/* end of create note */
+
+/* @media screen and (max-width: 600px) {
+    body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .judul{
+        font-size: 1.5rem;
+    }
+    body .profil {
+        top: 6rem;
+        left: 1rem;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .box-login{
+        width: 350px;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        border: 0 !important;
+        padding-top: 0 !important;
+    }
+    .tabel {
+        width: 100%;
+    }
+    .lampiran {
+        margin-left: 2rem;
+    }
+} */
+
+/* approval page */
+.frame-ttd {
+    background-size: cover;
+    background-position: center;
+}

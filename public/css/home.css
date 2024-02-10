@@ -1,0 +1,15 @@
+.debug-border {
+    border: 1px solid red;
+}
+
+.profile-box {
+    position: relative;
+    /* Mengatur posisi elemen menjadi tetap (fixed) */
+
+    background-color: #fff;
+    /* Warna latar belakang */
+    padding: 10px;
+    /* Jarak antara teks dan tepi kotak */
+    border: 1px solid #ccc;
+    /* Garis tepi kotak */
+}

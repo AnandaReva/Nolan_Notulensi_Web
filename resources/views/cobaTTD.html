@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kolom Tanda Tangan</title>
+</head>
+<body>
+    <canvas id="signatureCanvas" width="400" height="200" style="border: 1px solid #000;"></canvas>
+    <br>
+    <button id="saveButton">Save</button>
+    <button id="resetButton">Reset</button>
+
+    <script>
+        const canvas = document.getElementById('signatureCanvas');
+        const context = canvas.getContext('2d');
+        const saveButton = document.getElementById('saveButton');
+        const resetButton = document.getElementById('resetButton');
+
+        let drawing = false;
+
+        canvas.addEventListener('mousedown', () => {
+            drawing = true;
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+            context.beginPath();
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!drawing) return;
+
+            context.lineWidth = 2;
+            context.lineCap = 'round';
+            context.strokeStyle = 'black';
+
+            context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            context.stroke();
+        });
+
+        resetButton.addEventListener('click', () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        saveButton.addEventListener('click', () => {
+            const signatureImage = canvas.toDataURL('image/png');
+            
+            // Mengirimkan gambar tanda tangan ke server untuk disimpan
+            // Gantilah bagian ini dengan kode server-side untuk menyimpan gambar ke database
+            // Anda bisa menggunakan AJAX, fetch, atau metode lainnya untuk mengirim data gambar ke server.
+            // Contoh menggunakan fetch:
+
+            fetch('/save-signature', {
+                method: 'POST',
+                body: JSON.stringify({ signature: signatureImage }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    console.log('Tanda tangan berhasil disimpan.');
+                } else {
+                    console.error('Gagal menyimpan tanda tangan.');
+                }
+            })
+            .catch(error => {
+                console.error('Terjadi kesalahan:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+     /*
+        $approvalLinks = [];
+        foreach ($meeting_attendee_id as $key => $attendee_id) {
+            $approvalLink = url("nolan.com/meeting/{$meeting_id}/approval/{$attendee_id}");
+            $approvalLinks[] = $approvalLink;
+            // Kirim email ke setiap peserta pertemuan
+            try {
+                // Mail::to($meeting_attendee_email[$key])->send(new FinalizeEmail($meeting_name, $approvalLink));
+            } catch (\Throwable $th) {
+                dd("gagal: " . $th->getMessage());
+
+                //throw $th;
+                // return redirect()->route('home')->with('error', 'Sorry, Something went wrong.');
+            }
+            //  Mail::to($meeting_attendee_email[$key])->send(new FinalizeEmail($meeting_name, $approvalLink));
+        } */
+
+        // return redirect()->route('home')->with('success', 'Emails have been sent to all meeting attendees for Approval or revision.');
+        //cth approval_link: http://127.0.0.1:8000/nolan.com/meeting/149/approval/4
+
+        // dd($request->all(), $ids,$emails, $attendanceStatuses, $meeting_id,   $meeting_name);
+        //  $participants = Meeting_Participant::where('attendance_status', 1)->get();
+
+
+        //  return "Email telah dikirim ke peserta meeting.";

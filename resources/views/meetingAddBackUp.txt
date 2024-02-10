@@ -1,0 +1,236 @@
+@extends('layouts.mainLayout')
+
+@section('title', 'Tambah Pertemuan')
+
+@section('content')
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/meetingAdd.css') }}">
+
+
+    <div class="container mt-5">
+        <div class="card ">
+
+            <div class="card-body">
+                <div class="text-center">
+                    <h3>Create Note</h3>
+                </div>
+
+                <form method="POST" action="{{ route('meeting.store') }} " enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="title">Meeting title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date">Date/Time</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" id="location" name="location" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="note_taker">Note Taker</label>
+                                <select class="form-control" id="note_taker" name="note_taker" required>
+                                    <option value="">Pilih Note Taker</option>
+                                    @foreach ($peserta_tersedia as $peserta)
+                                        <option value="{{ $peserta->id }}" data-id="{{ $peserta->id }}">
+                                            {{ $peserta->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inisiator">Meeting Called By</label>
+                                <select class="form-control" id="inisiator" name="inisiator" required>
+                                    <option value="">Pilih Meeting Called By</option>
+                                    @foreach ($peserta_tersedia as $peserta)
+                                        <option value="{{ $peserta->id }}" data-id="{{ $peserta->id }}">
+                                            {{ $peserta->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Attendees</label>
+                            @foreach ($peserta_tersedia as $peserta)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="participants[]"
+                                        id="peserta_{{ $peserta->id }}" value="{{ $peserta->id }}">
+                                    <label class="form-check-label" for="peserta_{{ $peserta->id }}">
+                                        {{ $peserta->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <script src="{{ asset('js/attendance.js') }}"></script>
+
+
+                        <br>
+
+                        <label><b>Discussion</b></label>
+                        <div id="discussion-container">
+                            <div id="discussions">
+                                <div class="discussion">
+                                    <label for="discussion[]">Discussion:</label>
+                                    <input type="text" name="discussion[]">
+                                    <!--   <input type="button" class="addAction" value="Add Action" data-discussion-index="0"> -->
+
+                                    <button type="button" class="addAction" value="Add Action" data-discussion-index="0"
+                                        type="button"
+                                        class="btn btn-outline-secondary btn-sm float-right btn-sm add-action">
+                                        <i class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i
+                                                class="fa fa-plus fa-stack-1x fa-inverse"></i></i> Tambah Action
+                                    </button>
+
+                                    <div class="actions">
+                                        <div class="action">
+                                            <label for="item[0][]">Item:</label>
+                                            <input type="text" name="item[0][]" id="item_0">
+                                            <label for="due[0][]">Due Date:</label>
+                                            <input type="date" name="due[0][]" id="due_0">
+                                            <label for="pic[0][]">PIC:</label>
+                                            <select name="pic[0][]" id="pic_0">
+                                                <option value="0">Select PIC</option>
+                                                @foreach ($peserta_tersedia as $option)
+                                                    <option value="{{ $option['id'] }}">{{ $option['name'] }}</option>
+                                                @endforeach
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <input type="button" id="addDiscussion" value="Add Discussion"
+                                            class="btn btn-outline-primary float-right btn-sm add-action"> -->
+
+                            <button id="addDiscussion" value="Add Discussion" type="button"
+                                class="btn btn-outline-primary float-right btn-sm add-action">
+                                <i class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i
+                                        class="fa fa-plus fa-stack-1x fa-inverse"></i></i> Tambah Item Diskusi
+                            </button>
+
+
+
+                        </div>
+
+
+
+                        <script>
+                            // kirim data peserta yang tersedia ke javascript dg json
+                            var pesertaTersedia = @json($peserta_tersedia);
+                        </script>
+
+
+
+
+                        <script src="{{ asset('js/addDiscussion.js') }}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="file">File Rapat (opsional)</label>
+                            <input type="file" name="file" id="file" class="form-control">
+                        </div>
+
+
+                        <br>
+                        <div>
+                            @error('file')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <button type="submit" class="btn btn-primary ">Simpan</button>
+                        </div>
+                </form>
+            </div>
+
+
+        </div>
+
+
+    </div>
+@endsection
+
+
+
+
+// JavaScript to handle dynamic actions
+document.getElementById("addDiscussion").addEventListener("click", function (e) {
+    e.preventDefault(); // Mencegah pengiriman formulir utama
+    var discussionDiv = document.createElement("div");
+    discussionDiv.className = "discussion";
+    var discussionIndex = document.querySelectorAll(".discussion").length;
+
+    discussionDiv.innerHTML = `
+        <label for="discussion[]">Discussion:</label>
+       
+        <textarea rows="4" type="text" name="discussion[]" > </textarea>
+       
+        <button type="button" class="addAction" value="Add Action"
+        data-discussion-index="${discussionIndex}" type="button"
+        class="btn btn-outline-secondary btn-sm float-right btn-sm add-action">
+        <i class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i
+                class="fa fa-plus fa-stack-1x fa-inverse"></i></i> Tambah Action
+    </button>
+        <div class="actions">
+            <div class="action">
+                <label for="item[${discussionIndex}][]">Item:</label>
+                <input type="text" name="item[${discussionIndex}][]" id="item_${discussionIndex}">
+                <label for="due[${discussionIndex}][]">Due Date:</label>
+                <input type="date" name="due[${discussionIndex}][]" id="due_${discussionIndex}">
+                <label for="pic[${discussionIndex}][]">PIC:</label>
+                <select name="pic[${discussionIndex}][]" id="pic_${discussionIndex}">
+                <option value="0" >Select PIC</option> <!-- Placeholder -->
+                ${pesertaTersedia.map(option => `<option value="${option.id}">${option.name}</option>`).join('')}
+            </select>
+            
+            
+            </div>
+        </div>
+    `;
+
+    document.getElementById("discussions").appendChild(discussionDiv);
+});
+
+// Add action dynamically within each discussion
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.className == "addAction") {
+        e.preventDefault();
+        var actionDiv = document.createElement("div");
+        actionDiv.className = "action";
+        var discussionIndex = e.target.getAttribute("data-discussion-index");
+
+        actionDiv.innerHTML = `
+            <label for="item[${discussionIndex}][]">Item:</label>
+            <input type="text" name="item[${discussionIndex}][]" id="item_${discussionIndex}">
+            <label for="due[${discussionIndex}][]">Due Date:</label>
+            <input type="date" name="due[${discussionIndex}][]" id="due_${discussionIndex}">
+            <label for="pic[${discussionIndex}][]">PIC:</label>
+            <select name="pic[${discussionIndex}][]" id="pic_${discussionIndex}">
+            <option value="0"  >Select PIC</option> <!-- Placeholder -->
+            ${pesertaTersedia.map(option => `<option value="${option.id}">${option.name}</option>`).join('')}
+        </select>
+        
+        `;
+
+        e.target.parentNode.querySelector(".actions").appendChild(actionDiv);
+    }
+});
