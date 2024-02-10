@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -159,3 +160,7 @@ For open source projects, say how it is licensed.
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 >>>>>>> db8a147b0af36b60dccb1031dde01c1ff309a60a
+=======
+# Nolan_Notulensi_Web
+ "Nolan" is a comprehensive Notetaking Website designed for university environments. This platform enables users to meticulously document meeting proceedings, discussions, and actionable items designated for Persons-in-Charge (PICs). Looking ahead, Nolan is poised to seamlessly integrate with Azure Cloud and Microsoft Teams meetings.
+>>>>>>> 3cd2f2271f8acf3e24b5bd8182c292ac8eb84c40
